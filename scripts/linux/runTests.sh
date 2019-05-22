@@ -67,7 +67,7 @@ while read testDll; do
   fi  
 done < <(find $OUTPUT_FOLDER -type f -iname $SUFFIX)
 
-testCommandPrefix="$DOTNET_ROOT_PATH/dotnet vstest /Logger:trx;LogFileName=result.trx /TestAdapterPath:\"$OUTPUT_FOLDER\" /Parallel /InIsolation"
+testCommandPrefix="$DOTNET_ROOT_PATH/dotnet vstest /Logger:trx;LogFileName=result.trx /TestAdapterPath:\"$OUTPUT_FOLDER\" /Parallel /InIsolation /EnableCodeCoverage"
 if [ ! -z "$testFilterValue" ]
 then
   testCommandPrefix+=" /TestCaseFilter:"$testFilterValue""
