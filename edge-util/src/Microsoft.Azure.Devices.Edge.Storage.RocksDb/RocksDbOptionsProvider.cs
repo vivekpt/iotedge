@@ -54,6 +54,7 @@ namespace Microsoft.Azure.Devices.Edge.Storage.RocksDb
             DbOptions options = new DbOptions()
                 .SetCreateIfMissing()
                 .SetCreateMissingColumnFamilies();
+            options.SetStatsDumpPeriodSec(15);
 
             if (this.env.Is32BitProcess || !this.optimizeForPerformance)
             {
