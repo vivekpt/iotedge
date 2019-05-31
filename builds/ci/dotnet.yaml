@@ -66,6 +66,16 @@ jobs:
           testRunner: VSTest
           testResultsFiles: '**/TestResults/result.trx'
         condition: succeededOrFailed()
+      - task: CopyFiles@2
+        displayName: Copy code coverage result
+        inputs:
+          contents: **\*.coverage
+          targetFolder: $(Build.ArtifactStagingDirectory)
+      - task: PublishBuildArtifacts@1
+        displayName: Publish code coverage result
+        inputs:
+          pathtoPublish: $(Build.ArtifactStagingDirectory)
+          artifactName: 'CodeCoverage'
   - job: windows
     displayName: Windows
     timeoutInMinutes: 120
@@ -110,3 +120,13 @@ jobs:
         inputs:
           testRunner: VSTest
           testResultsFiles: '**\TestResults\*.trx'
+      - task: CopyFiles@2
+        displayName: Copy code coverage result
+        inputs:
+          contents: **\*.coverage
+          targetFolder: $(Build.ArtifactStagingDirectory)
+      - task: PublishBuildArtifacts@1
+        displayName: Publish code coverage result
+        inputs:
+          pathtoPublish: $(Build.ArtifactStagingDirectory)
+          artifactName: 'CodeCoverage'
